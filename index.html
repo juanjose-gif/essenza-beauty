@@ -932,9 +932,12 @@ function handleNewsletter(event) {
 <!-- Librería para generar el código QR -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-// --- 7. Código QR ---
-// Dirección real de la web (cámbiala aquí si algún día usas un dominio propio)
-const SITE_URL = 'https://zippy-cranachan-ad0ef9.netlify.app';
+// --- 7. Código QR Dinámico ---
+// Si se carga mediante HTTP/HTTPS (GitHub Pages o dominio propio), toma la dirección real del navegador.
+// Si se abre como archivo local, utiliza por defecto la URL oficial de GitHub Pages.
+const SITE_URL = window.location.href.startsWith('http') 
+    ? window.location.href 
+    : 'https://juanjose-gif.github.io/essenza-beauty/';
 
 const qrBox = document.getElementById('qr-box');
 if (qrBox && typeof QRCode !== 'undefined') {
