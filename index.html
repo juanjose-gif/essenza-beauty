@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<!-- No cambies nada de lo del principio, puedes cambiar el nombre si quieres y los precios -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ESSENZA BEAUTY - Salón de Belleza</title>
+
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- FontAwesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<!-- Google Fonts (Playfair Display & Plus Jakarta Sans) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script>
+tailwind.config = {
+    theme: {
+        extend: {
+            colors: {
+                aqua: {
+                    50: '#faf5ff',
+                    100: '#f3e8ff',
+                    200: '#e9d5ff',
+                    300: '#d8b4fe',
+                    400: '#c4a1f2',
+                    500: '#9d7fd4',
+                    600: '#8b6cc1',
+                    700: '#7656aa',
+                },
+                sea: {
+                    light: '#ede9fe',
+                    DEFAULT: '#c4b5fd',
+                    dark: '#7c6bc4',
+                },
+                pearl: '#f8fafc',
+                cream: '#fdfbf7',
+                gold: {
+                    soft: '#d4af37',
+                    light: '#f3e5ab'
+                }
+            },
+            fontFamily: {
+                serif: ['Playfair Display', 'serif'],
+                sans: ['Plus Jakarta Sans', 'sans-serif'],
+            }
+        }
+    }
+}
+</script>
+
+<style>
+.glass-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+.glass-nav {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+}
+.hero-bg {
+    background: linear-gradient(135deg, rgba(237, 233, 254, 0.7) 0%, rgba(250, 245, 255, 0.8) 100%),
+                url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+}
+</style>
+</head>
+<body class="font-sans bg-cream text-gray-800 antialiased selection:bg-aqua-200 selection:text-aqua-600">
+
+<!-- ==================== NAVEGACIÓN HEADER ==================== -->
+<header class="fixed top-0 left-0 w-full z-40 transition-all duration-300 glass-nav shadow-sm" id="navbar">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-aqua-400 to-sea-dark flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+            <i class="fa-solid font-serif text-xl italic">E</i>
+        </div>
+        <div class="flex flex-col">
+            <span class="font-serif text-2xl font-bold tracking-wide text-gray-900 group-hover:text-aqua-600 transition-colors">ESSENZA</span>
+            <span class="text-[10px] tracking-widest uppercase text-aqua-600 font-semibold -mt-1">Beauty</span>
+        </div>
+    </a>
+
+    <!-- Menú de navegación -->
+    <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-700">
+        <a href="#inicio" class="hover:text-aqua-600 transition-colors">Inicio</a>
+        <a href="#servicios" class="hover:text-aqua-600 transition-colors">Servicios</a>
+        <a href="#cotizador" class="hover:text-aqua-600 transition-colors">Cotizador</a>
+        <a href="#galeria" class="hover:text-aqua-600 transition-colors">Galería</a>
+        <a href="#testimonios" class="hover:text-aqua-600 transition-colors">Opiniones</a>
+        <a href="#contacto" class="hover:text-aqua-600 transition-colors">Ubicación</a>
+    </nav>
+
+    <!-- Botón de reservar -->
+    <div class="hidden md:flex items-center">
+        <button onclick="openModal()" class="px-6 py-2.5 bg-gradient-to-r from-aqua-500 to-sea-dark text-white rounded-full font-medium shadow-md hover:shadow-lg hover:opacity-95 transition-all transform hover:-translate-y-0.5">
+            <i class="fa-regular fa-calendar-check mr-2"></i>Reservar Cita
+        </button>
+    </div>
+
+    <!-- Botón menú móvil -->
+    <button id="mobile-menu-btn" class="md:hidden text-gray-700 hover:text-aqua-600 focus:outline-none p-2" aria-label="Abrir Menú">
+        <i class="fa-solid fa-bars text-2xl"></i>
+    </button>
+</div>
+
+<!-- Menú desplegable móvil -->
+<div id="mobile-menu" class="hidden md:hidden bg-white/95 border-b border-gray-100 px-6 py-4 space-y-3">
+    <a href="#inicio" onclick="closeMobileMenu()" class="block text-gray-700 hover:text-aqua-600 font-medium py-1">Inicio</a>
+    <a href="#servicios" onclick="closeMobileMenu()" class="block text-gray-700 hover:text-aqua-600 font-medium py-1">Servicios</a>
+    <a href="#cotizador" onclick="closeMobileMenu()" class="block text-gray-700 hover:text-aqua-600 font-medium py-1">Cotizador</a>
+    <a href="#galeria" onclick="closeMobileMenu()" class="block text-gray-700 hover:text-aqua-600 font-medium py-1">Galería</a>
+    <a href="#testimonios" onclick="closeMobileMenu()" class="block text-gray-700 hover:text-aqua-600 font-medium py-1">Opiniones</a>
+    <a href="#contacto" onclick="closeMobileMenu()" class="block text-gray-700 hover:text-aqua-600 font-medium py-1">Ubicación</a>
+    <button onclick="openModal(); closeMobileMenu();" class="w-full mt-2 px-6 py-3 bg-gradient-to-r from-aqua-500 to-sea-dark text-white rounded-full font-medium shadow-md">
+        <i class="fa-regular fa-calendar-check mr-2"></i>Reservar Cita
+    </button>
+</div>
+</header>
+
+<!-- ==================== INICIO (HERO) ==================== -->
+<section id="inicio" class="relative pt-32 pb-20 lg:pt-40 lg:pb-32 hero-bg min-h-screen flex items-center">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+            <span class="inline-block px-4 py-1.5 bg-aqua-100/80 text-aqua-600 rounded-full text-xs font-semibold uppercase tracking-wider border border-aqua-200">
+                <i class="fa-solid fa-sparkles mr-1.5"></i> Experiencia de Cuidado & Bienestar
+            </span>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold text-gray-900 leading-tight">
+                Realza tu belleza natural en <span class="text-transparent bg-clip-text bg-gradient-to-r from-aqua-600 to-sea-dark">Essenza Beauty</span>
+            </h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto lg:mx-0 font-light">
+                Tu espacio de confianza en Irún donde el cuidado personal se transforma en arte. Disfruta de estilismo avanzado, estética facial y masajes relajantes.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                <button onclick="openModal()" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-aqua-500 to-sea-dark text-white rounded-full font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all text-center">
+                    Agendar mi Cita <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                </button>
+                <a href="#cotizador" class="w-full sm:w-auto px-8 py-3.5 bg-white/80 hover:bg-white text-gray-800 rounded-full font-semibold shadow-sm hover:shadow border border-gray-200 transition-all text-center">
+                    Calcular Presupuesto
+                </a>
+            </div>
+            <!-- Badges -->
+            <div class="pt-8 border-t border-gray-200/60 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0 text-center lg:text-left">
+                <div>
+                    <p class="font-serif text-2xl font-bold text-gray-900">100%</p>
+                    <p class="text-xs text-gray-500">Garantía de Calidad</p>
+                </div>
+                <div>
+                    <p class="font-serif text-2xl font-bold text-gray-900">+5k</p>
+                    <p class="text-xs text-gray-500">Clientes Satisfechos</p>
+                </div>
+                <div>
+                    <p class="font-serif text-2xl font-bold text-gray-900">4.9 ★</p>
+                    <p class="text-xs text-gray-500">Valoración Media</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Imagen Destacada Hero -->
+        <div class="lg:col-span-5 relative">
+            <div class="relative mx-auto max-w-md lg:max-w-none">
+                <div class="absolute -inset-2 bg-gradient-to-r from-aqua-300 to-sea-light rounded-3xl blur-xl opacity-60"></div>
+                <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" alt="Salón de Belleza Essenza Beauty" class="relative rounded-2xl shadow-2xl object-cover w-full h-[450px]">
+                <!-- Tarjeta Flotante -->
+                <div class="absolute -bottom-6 -left-6 bg-white/95 p-4 rounded-xl shadow-lg border border-gray-100 flex items-center gap-4 max-w-xs backdrop-blur-sm">
+                    <div class="w-12 h-12 rounded-full bg-aqua-100 text-aqua-600 flex items-center justify-center text-xl flex-shrink-0">
+                        <i class="fa-solid fa-scissors"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-serif font-bold text-sm text-gray-900">Atención Personalizada</h4>
+                        <p class="text-xs text-gray-500">Bebidas de cortesía y atención dedicada.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- ==================== SERVICIOS Y PRECIOS ==================== -->
+<section id="servicios" class="py-20 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-aqua-600 font-semibold text-xs tracking-widest uppercase">Nuestra Carta</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-gray-900 mt-2">Servicios & Tratamientos</h2>
+        <p class="text-gray-600 mt-3 font-light">Explora nuestro catálogo de servicios diseñados para ti.</p>
+    </div>
+
+    <!-- Botones Pestañas de Categoría -->
+    <div class="flex flex-wrap justify-center gap-2 mb-10">
+        <button onclick="switchTab('peluqueria')" id="tab-peluqueria" class="tab-btn px-6 py-2.5 rounded-full font-medium text-sm transition-all bg-aqua-600 text-white shadow-md">
+            <i class="fa-solid fa-scissors mr-2"></i>Peluquería
+        </button>
+        <button onclick="switchTab('facial')" id="tab-facial" class="tab-btn px-6 py-2.5 rounded-full font-medium text-sm transition-all bg-gray-100 text-gray-600 hover:bg-gray-200">
+            <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>Estética Facial
+        </button>
+        <button onclick="switchTab('unas')" id="tab-unas" class="tab-btn px-6 py-2.5 rounded-full font-medium text-sm transition-all bg-gray-100 text-gray-600 hover:bg-gray-200">
+            <i class="fa-solid fa-hand-sparkles mr-2"></i>Cuidado de Uñas
+        </button>
+        <button onclick="switchTab('masajes')" id="tab-masajes" class="tab-btn px-6 py-2.5 rounded-full font-medium text-sm transition-all bg-gray-100 text-gray-600 hover:bg-gray-200">
+            <i class="fa-solid fa-hands-holding-circle mr-2"></i>Masajes
+        </button>
+    </div>
+
+    <!-- Contenido Pestaña 1: Peluquería -->
+    <div id="content-peluqueria" class="tab-content grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-pearl border border-gray-100 hover:border-aqua-200 transition-all shadow-sm hover:shadow-md flex justify-between items-center">
+            <div class="space-y-1">
+                <h3 class="font-serif font-bold text-lg text-gray-900">Corte & Peinado Stylist</h3>
+                <p class="text-xs text-gray-500">Incluye lavado con champú orgánico y secado profesional.</p>
+            </div>
+            <div class="text-right">
+                <span class="text-xl font-serif font-bold text-aqua-600">25,00 €</span>
+                <p class="text-[10px] text-gray-400">~ 45 min</p>
+            </div>
+        </div>
+        <div class="p-6 rounded-2xl bg-pearl border border-gray-100 hover:border-aqua-200 transition-all shadow-sm hover:shadow-md flex justify-between items-center">
+            <div class="space-y-1">
+                <h3 class="font-serif font-bold text-lg text-gray-900">Tinte & Coloración Completa</h3>
+                <p class="text-xs text-gray-500">Tintes sin amoníaco con máxima nutrición y brillo.</p>
+            </div>
+            <div class="text-right">
+                <span class="text-xl font-serif font-bold text-aqua-600">45,00 €</span>
+                <p class="text-[10px] text-gray-400">~ 90 min</p>
+            </div>
+        </div>
+        <div class="p-6 rounded-2xl bg-pearl border border-gray-100 hover:border-aqua-200 transition-all shadow-sm hover:shadow-md flex justify-between items-center">
+            <div class="space-y-1">
+                <h3 class="font-serif font-bold text-lg text-gray-900">Balayage / Mechas Premium</h3>
+                <p class="text-xs text-gray-500">Técnica de aclarado personalizada con matizado.</p>
+            </div>
+            <div class="text-right">
+                <span class="text-xl font-serif font-bold text-aqua-600">75,00 €</span>
+                <p class="text-[10px] text-gray-400">~ 150 min</p>
+            </div>
+        </div>
+        <div class="p-6 rounded-2xl bg-pearl border border-gray-100 hover:border-aqua-200 transition-all shadow-sm hover:shadow-md flex justify-between items-center">
+            <div class="space-y-1">
+                <h3 class="font-serif font-bold text-lg text-gray-900">Tratamiento Hidratante Keratina</h3>
+                <p class="text-xs text-gray-500">Reestructuración capilar para eliminar encrespamiento.</p>
+            </div>
+            <div class="text-right">
+                <span class="text-xl font-serif font-bold text-aqua-600">50,00 €</span>
+                <p class="text-[10px] text-gray-400">~ 60 min</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenido Pestaña 2: Facial -->
+    <div id="content-facial" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-pearl border border-gray-100 hover:border-aqua-200 transition-all shadow-sm hover:shadow-md flex justify-between items-center">
+            <div class="space-y-1">
+                <h3 class="font-serif font-bold text-lg text-gray-900">Limpieza Facial Profunda</h3>
+                <p class="text-xs text-gray-500">Exfoliación, vapor de ozono y mascarilla purificante.</p>
+            </div>
+            <div class="text-right">
+                <span class="text-xl font-serif font-bold text-aqua-600">35,00 €</span>
+                <p class="text-[10px] text-gray-400">~ 50 min</p>
+            </div>
+        </div>
+        <div class="p-6 rounded-2xl bg-pearl border border-gray-100 hover:border-aqua-200 transition-all shadow-sm hover:shadow-md flex justify-between items-center">
+            <div class="space-y-1">
+                <h3 class="font-serif font-bold text-lg text-gray-900">Tratamiento Anti-Edad Ácido Hialurónico</h3>
+                <p class="text-xs text-gray-500">Hidratación intensiva para atenuar líneas de expresión.</p>
+            </div>
+            <div class="text-right">
+                <span class="text-xl font-serif font-bold text-aqua-600">60,00 €</span>
+                <p class="text-[10px] text-gray-400">~ 60 min</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenido Pestaña 3: Uñas -->
+    <div id="content-unas" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-pearl border border-gray-100 hover:border-aqua-200 transition-all shadow-sm hover:shadow-md flex justify-between items-center">
+            <div class="space-y-1">
+                <h3 class="font-serif font-bold text-lg text-gray-900">Manicura Semipermanente</h3>
+                <p class="text-xs text-gray-500">Limpieza de cutícula, limado y esmaltado de larga duración.</p>
+            </div>
+            <div class="text-right">
+                <span class="text-xl font-serif font-bold text-aqua-600">20,00 €</span>
+                <p class="text-[10px] text-gray-400">~ 40 min</p>
+            </div>
+        </div>
+        <div class="p-6 rounded-2xl bg-pearl border border-gray-100 hover:border-aqua-200 transition-all shadow-sm hover:shadow-md flex justify-between items-center">
+            <div class="space-y-1">
+                <h3 class="font-serif font-bold text-lg text-gray-900">Pedicura Completa</h3>
+                <p class="text-xs text-gray-500">Exfoliación, baño de sales, masaje y esmaltado.</p>
+            </div>
+            <div class="text-right">
+                <span class="text-xl font-serif font-bold text-aqua-600">30,00 €</span>
+                <p class="text-[10px] text-gray-400">~ 50 min</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenido Pestaña 4: Masajes -->
+    <div id="content-masajes" class="tab-content hidden grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl bg-pearl border border-gray-100 hover:border-aqua-200 transition-all shadow-sm hover:shadow-md flex justify-between items-center">
+            <div class="space-y-1">
+                <h3 class="font-serif font-bold text-lg text-gray-900">Masaje Relajante Corporal</h3>
+                <p class="text-xs text-gray-500">Masaje corporal completo con aceites esenciales aromáticos.</p>
+            </div>
+            <div class="text-right">
+                <span class="text-xl font-serif font-bold text-aqua-600">40,00 €</span>
+                <p class="text-[10px] text-gray-400">~ 50 min</p>
+            </div>
+        </div>
+        <div class="p-6 rounded-2xl bg-pearl border border-gray-100 hover:border-aqua-200 transition-all shadow-sm hover:shadow-md flex justify-between items-center">
+            <div class="space-y-1">
+                <h3 class="font-serif font-bold text-lg text-gray-900">Masaje Descontracturante</h3>
+                <p class="text-xs text-gray-500">Terapia focalizada en aliviar tensión muscular profunda.</p>
+            </div>
+            <div class="text-right">
+                <span class="text-xl font-serif font-bold text-aqua-600">50,00 €</span>
+                <p class="text-[10px] text-gray-400">~ 60 min</p>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- ==================== CALCULADORA INTERACTIVA / COTIZADOR ==================== -->
+<section id="cotizador" class="py-20 bg-gradient-to-b from-sea-light/40 to-cream">
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-aqua-600 font-semibold text-xs tracking-widest uppercase">Calculadora Personalizada</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-gray-900 mt-2">Cotiza tus Tratamientos</h2>
+        <p class="text-gray-600 mt-2 text-sm font-light">Selecciona los servicios que deseas para calcular el costo estimado en Euros (€) al instante.</p>
+    </div>
+
+    <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-xl border border-white">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            <!-- Opciones de Selección -->
+            <div class="lg:col-span-7 space-y-4">
+                <p class="font-serif font-bold text-gray-800 text-base mb-2">Selecciona uno o varios servicios:</p>
+
+                <label class="flex items-center justify-between p-4 rounded-xl bg-white border border-gray-200 hover:border-aqua-400 cursor-pointer transition-all shadow-sm group">
+                    <div class="flex items-center gap-3">
+                        <input type="checkbox" data-price="25" data-name="Corte & Peinado" class="calc-checkbox w-5 h-5 text-aqua-600 rounded focus:ring-aqua-400 accent-aqua-600">
+                        <div>
+                            <span class="font-medium text-gray-800 group-hover:text-aqua-600 text-sm block">Corte & Peinado Stylist</span>
+                            <span class="text-xs text-gray-400">Peluquería</span>
+                        </div>
+                    </div>
+                    <span class="font-bold text-sm text-gray-700">25,00 €</span>
+                </label>
+
+                <label class="flex items-center justify-between p-4 rounded-xl bg-white border border-gray-200 hover:border-aqua-400 cursor-pointer transition-all shadow-sm group">
+                    <div class="flex items-center gap-3">
+                        <input type="checkbox" data-price="45" data-name="Tinte & Color" class="calc-checkbox w-5 h-5 text-aqua-600 rounded focus:ring-aqua-400 accent-aqua-600">
+                        <div>
+                            <span class="font-medium text-gray-800 group-hover:text-aqua-600 text-sm block">Tinte & Coloración</span>
+                            <span class="text-xs text-gray-400">Peluquería</span>
+                        </div>
+                    </div>
+                    <span class="font-bold text-sm text-gray-700">45,00 €</span>
+                </label>
+
+                <label class="flex items-center justify-between p-4 rounded-xl bg-white border border-gray-200 hover:border-aqua-400 cursor-pointer transition-all shadow-sm group">
+                    <div class="flex items-center gap-3">
+                        <input type="checkbox" data-price="35" data-name="Limpieza Facial" class="calc-checkbox w-5 h-5 text-aqua-600 rounded focus:ring-aqua-400 accent-aqua-600">
+                        <div>
+                            <span class="font-medium text-gray-800 group-hover:text-aqua-600 text-sm block">Limpieza Facial Profunda</span>
+                            <span class="text-xs text-gray-400">Facial</span>
+                        </div>
+                    </div>
+                    <span class="font-bold text-sm text-gray-700">35,00 €</span>
+                </label>
+
+                <label class="flex items-center justify-between p-4 rounded-xl bg-white border border-gray-200 hover:border-aqua-400 cursor-pointer transition-all shadow-sm group">
+                    <div class="flex items-center gap-3">
+                        <input type="checkbox" data-price="20" data-name="Manicura Semipermanente" class="calc-checkbox w-5 h-5 text-aqua-600 rounded focus:ring-aqua-400 accent-aqua-600">
+                        <div>
+                            <span class="font-medium text-gray-800 group-hover:text-aqua-600 text-sm block">Manicura Semipermanente</span>
+                            <span class="text-xs text-gray-400">Uñas</span>
+                        </div>
+                    </div>
+                    <span class="font-bold text-sm text-gray-700">20,00 €</span>
+                </label>
+
+                <label class="flex items-center justify-between p-4 rounded-xl bg-white border border-gray-200 hover:border-aqua-400 cursor-pointer transition-all shadow-sm group">
+                    <div class="flex items-center gap-3">
+                        <input type="checkbox" data-price="40" data-name="Masaje Relajante" class="calc-checkbox w-5 h-5 text-aqua-600 rounded focus:ring-aqua-400 accent-aqua-600">
+                        <div>
+                            <span class="font-medium text-gray-800 group-hover:text-aqua-600 text-sm block">Masaje Relajante Corporal</span>
+                            <span class="text-xs text-gray-400">Masajes</span>
+                        </div>
+                    </div>
+                    <span class="font-bold text-sm text-gray-700">40,00 €</span>
+                </label>
+            </div>
+
+            <!-- Resumen del Presupuesto Dinámico -->
+            <div class="lg:col-span-5 bg-white p-6 rounded-2xl border border-gray-100 flex flex-col justify-between shadow-sm">
+                <div>
+                    <h3 class="font-serif font-bold text-xl text-gray-900 border-b border-gray-100 pb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-receipt text-aqua-600"></i> Resumen Estimado
+                    </h3>
+                    <div id="calc-selected-list" class="py-4 space-y-2 min-h-[140px] text-sm text-gray-600">
+                        <p class="text-gray-400 italic text-xs">No has seleccionado ningún servicio aún.</p>
+                    </div>
+                </div>
+                <div class="border-t border-gray-100 pt-4 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <span class="font-medium text-gray-700">Total Estimado:</span>
+                        <span id="calc-total-price" class="text-3xl font-serif font-bold text-aqua-600">0,00 €</span>
+                    </div>
+                    <button onclick="openModalWithSelected()" class="w-full py-3 bg-gradient-to-r from-aqua-500 to-sea-dark text-white rounded-xl font-medium shadow-md hover:opacity-95 transition-all text-center">
+                        Reservar con Selección
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- ==================== GALERÍA DE TRABAJOS ==================== -->
+<section id="galeria" class="py-20 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-aqua-600 font-semibold text-xs tracking-widest uppercase">Resultados Reales</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-gray-900 mt-2">Galería de Trabajos</h2>
+        <p class="text-gray-600 mt-2 font-light">Mira el trabajo de nuestro equipo en Essenza Beauty.</p>
+    </div>
+
+    <!-- Filtro Galería -->
+    <div class="flex justify-center gap-2 mb-10 flex-wrap">
+        <button onclick="filterGallery('all', event)" class="gallery-filter-btn active-filter px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all bg-aqua-600 text-white">Todos</button>
+        <button onclick="filterGallery('cabello', event)" class="gallery-filter-btn px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all bg-gray-100 text-gray-600 hover:bg-gray-200">Cabello</button>
+        <button onclick="filterGallery('unas', event)" class="gallery-filter-btn px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all bg-gray-100 text-gray-600 hover:bg-gray-200">Uñas</button>
+        <button onclick="filterGallery('facial', event)" class="gallery-filter-btn px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider transition-all bg-gray-100 text-gray-600 hover:bg-gray-200">Faciales</button>
+    </div>
+
+    <!-- Grid de Imágenes -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="gallery-item cabello group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all min-h-[20rem] bg-gradient-to-tr from-aqua-100 to-sea-light">
+            <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=600&q=80" alt="Balayage" onerror="this.style.display='none'" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                <span class="text-xs uppercase tracking-wider text-aqua-300">Cabello</span>
+                <h4 class="font-serif font-bold text-lg">Balayage Rubio Perla</h4>
+            </div>
+        </div>
+        <div class="gallery-item unas group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all min-h-[20rem] bg-gradient-to-tr from-aqua-100 to-sea-light">
+            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=600&q=80" alt="Nail Art" onerror="this.style.display='none'" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                <span class="text-xs uppercase tracking-wider text-aqua-300">Uñas</span>
+                <h4 class="font-serif font-bold text-lg">Manicura Minimalista</h4>
+            </div>
+        </div>
+        <div class="gallery-item facial group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all min-h-[20rem] bg-gradient-to-tr from-aqua-100 to-sea-light">
+            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=600&q=80" alt="Facial" onerror="this.style.display='none'" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                <span class="text-xs uppercase tracking-wider text-aqua-300">Estética Facial</span>
+                <h4 class="font-serif font-bold text-lg">Tratamiento de Luminosidad</h4>
+            </div>
+        </div>
+        <div class="gallery-item cabello group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all min-h-[20rem] bg-gradient-to-tr from-aqua-100 to-sea-light">
+            <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=600&q=80" alt="Corte Styling" onerror="this.style.display='none'" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                <span class="text-xs uppercase tracking-wider text-aqua-300">Cabello</span>
+                <h4 class="font-serif font-bold text-lg">Corte Bob & Peinado</h4>
+            </div>
+        </div>
+        <div class="gallery-item unas group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all min-h-[20rem] bg-gradient-to-tr from-aqua-100 to-sea-light">
+            <img src="https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=600&q=80" alt="Pedicura" onerror="this.style.display='none'" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                <span class="text-xs uppercase tracking-wider text-aqua-300">Uñas</span>
+                <h4 class="font-serif font-bold text-lg">Pedicura Completa</h4>
+            </div>
+        </div>
+        <div class="gallery-item facial group relative overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all min-h-[20rem] bg-gradient-to-tr from-aqua-100 to-sea-light">
+            <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=600&q=80" alt="Masaje" onerror="this.style.display='none'" class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                <span class="text-xs uppercase tracking-wider text-aqua-300">Masajes</span>
+                <h4 class="font-serif font-bold text-lg">Masaje Aromaterapia</h4>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- ==================== TESTIMONIOS INTERACTIVOS ==================== -->
+<section id="testimonios" class="py-20 bg-pearl relative overflow-hidden">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-aqua-600 font-semibold text-xs tracking-widest uppercase">Experiencias</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-gray-900 mt-2">Lo que dicen nuestras clientas</h2>
+    </div>
+
+    <div class="max-w-3xl mx-auto relative">
+        <div id="testimonial-container" class="bg-white p-8 sm:p-12 rounded-3xl shadow-sm border border-gray-100 text-center transition-all duration-300">
+            <div class="text-amber-400 text-lg mb-4 space-x-1" id="testi-stars">★★★★★</div>
+            <p id="testi-text" class="text-gray-600 italic text-base sm:text-lg mb-6">
+                "¡Una experiencia increíble en Essenza Beauty! El cambio de look superó todas mis expectativas. La atención es impecable y el ambiente te relaja al instante."
+            </p>
+            <div class="flex items-center justify-center gap-3">
+                <img id="testi-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Cliente" class="w-12 h-12 rounded-full object-cover">
+                <div class="text-left">
+                    <h5 id="testi-author" class="font-serif font-bold text-gray-900 text-sm">Mariana López</h5>
+                    <span id="testi-service" class="text-xs text-aqua-600">Servicio de Balayage</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex justify-center gap-4 mt-6">
+            <button onclick="prevTestimonial()" class="w-10 h-10 rounded-full bg-white border border-gray-200 text-gray-600 hover:text-aqua-600 hover:border-aqua-400 flex items-center justify-center transition-all">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button onclick="nextTestimonial()" class="w-10 h-10 rounded-full bg-white border border-gray-200 text-gray-600 hover:text-aqua-600 hover:border-aqua-400 flex items-center justify-center transition-all">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- ==================== UBICACIÓN & CONTACTO ==================== -->
+<section id="contacto" class="py-20 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-5 space-y-6">
+            <div>
+                <span class="text-aqua-600 font-semibold text-xs tracking-widest uppercase">Visítanos</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-gray-900 mt-2">Ubicación & Horarios</h2>
+                <p class="text-gray-600 mt-2 text-sm font-light">Te esperamos en nuestro salón en el centro de Irún.</p>
+            </div>
+
+            <div class="space-y-4 pt-2">
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-sea-light text-aqua-600 flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm text-gray-800">Dirección</h4>
+                        <p class="text-xs text-gray-500">Irún, Gipuzkoa, España</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-sea-light text-aqua-600 flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm text-gray-800">Horario de Atención</h4>
+                        <p class="text-xs text-gray-500">Lunes a Sábado: 9:00 - 20:00<br>Domingos: Cerrado</p>
+                    </div>
+                </div>
+                <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-sea-light text-aqua-600 flex items-center justify-center flex-shrink-0">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm text-gray-800">Teléfono & WhatsApp</h4>
+                        <p class="text-xs text-gray-500">+34 XXX XXX XXX</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mapa Simulado de Irún -->
+        <div class="lg:col-span-7">
+            <div class="rounded-3xl overflow-hidden shadow-lg border border-gray-100 bg-sea-light/30 p-2 relative h-[380px] flex items-center justify-center text-center">
+                <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=1000&q=80')"></div>
+                <div class="relative z-10 glass-card p-6 rounded-2xl max-w-sm shadow-xl border border-white">
+                    <div class="w-12 h-12 bg-aqua-600 text-white rounded-full flex items-center justify-center mx-auto mb-3 shadow-md animate-bounce">
+                        <i class="fa-solid fa-location-dot text-xl"></i>
+                    </div>
+                    <h4 class="font-serif font-bold text-lg text-gray-900 mb-1">ESSENZA BEAUTY - Salón de Belleza</h4>
+                    <p class="text-xs text-gray-500 mb-4">Paseo de Colón, Irún, Gipuzkoa</p>
+                    <a href="https://maps.google.com/?q=Irun+Gipuzkoa" target="_blank" class="inline-block px-5 py-2 bg-aqua-600 text-white rounded-full text-xs font-semibold hover:bg-aqua-700 transition-colors">
+                        Abrir en Google Maps
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- ==================== CÓDIGO QR ==================== -->
+<section id="qr" class="py-20 bg-pearl">
+<div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="glass-card rounded-3xl p-8 sm:p-12 shadow-xl border border-white text-center space-y-6">
+        <span class="text-aqua-600 font-semibold text-xs tracking-widest uppercase">Acceso Rápido</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-gray-900">Escanea y reserva</h2>
+        <p class="text-sm text-gray-600 font-light max-w-md mx-auto">
+            Escanea este código QR con tu móvil para abrir la web de Essenza Beauty y reservar tu cita al instante.
+        </p>
+        <div class="flex justify-center pt-2">
+            <div class="bg-white p-4 rounded-2xl shadow-md border border-gray-100">
+                <div id="qr-box" class="w-[220px] h-[220px] flex items-center justify-center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+<!-- ==================== PIE DE PÁGINA (FOOTER) ==================== -->
+<footer class="bg-gray-900 text-white pt-16 pb-8">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-12 border-b border-gray-800">
+        <div class="space-y-4">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-aqua-500 flex items-center justify-center text-white font-serif italic text-base">E</div>
+                <span class="font-serif text-xl font-bold tracking-wide">ESSENZA BEAUTY</span>
+            </div>
+            <p class="text-gray-400 text-xs leading-relaxed">
+                Tu salón de belleza de confianza en Irún. Ofrecemos tratamientos de alta calidad adaptados a tus necesidades.
+            </p>
+            <div class="flex space-x-3 pt-2 text-gray-400 text-sm">
+                <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-aqua-600 hover:text-white transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-aqua-600 hover:text-white transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center hover:bg-aqua-600 hover:text-white transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+        <div>
+            <h4 class="font-serif font-bold text-sm text-white mb-4 uppercase tracking-wider">Enlaces Rápidos</h4>
+            <ul class="space-y-2 text-xs text-gray-400">
+                <li><a href="#inicio" class="hover:text-aqua-400 transition-colors">Inicio</a></li>
+                <li><a href="#servicios" class="hover:text-aqua-400 transition-colors">Servicios & Precios</a></li>
+                <li><a href="#cotizador" class="hover:text-aqua-400 transition-colors">Calculadora de Servicios</a></li>
+                <li><a href="#galeria" class="hover:text-aqua-400 transition-colors">Galería de Trabajos</a></li>
+                <li><a href="#qr" class="hover:text-aqua-400 transition-colors">Código QR</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h4 class="font-serif font-bold text-sm text-white mb-4 uppercase tracking-wider">Servicios Populares</h4>
+            <ul class="space-y-2 text-xs text-gray-400">
+                <li><a href="#servicios" class="hover:text-aqua-400 transition-colors">Balayage & Coloración</a></li>
+                <li><a href="#servicios" class="hover:text-aqua-400 transition-colors">Limpieza Facial Profunda</a></li>
+                <li><a href="#servicios" class="hover:text-aqua-400 transition-colors">Manicura Semipermanente</a></li>
+                <li><a href="#servicios" class="hover:text-aqua-400 transition-colors">Masajes Relajantes</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h4 class="font-serif font-bold text-sm text-white mb-4 uppercase tracking-wider">Boletín</h4>
+            <p class="text-xs text-gray-400 mb-3">Recibe promociones exclusivas en tu correo.</p>
+            <form onsubmit="handleNewsletter(event)" class="space-y-2">
+                <input type="email" placeholder="Tu correo electrónico" required class="w-full px-4 py-2.5 bg-gray-800 text-xs text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-aqua-500 border border-gray-700">
+                <button type="submit" class="w-full py-2.5 bg-aqua-600 hover:bg-aqua-500 text-white font-medium text-xs rounded-lg transition-colors">Suscribirme</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="pt-8 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+        <p>&copy; 2026 ESSENZA BEAUTY - Salón de Belleza. Todos los derechos reservados. Irún, España.</p>
+        <div class="flex space-x-4">
+            <a href="#" class="hover:text-gray-400">Política de Privacidad</a>
+            <a href="#" class="hover:text-gray-400">Términos de Servicio</a>
+        </div>
+    </div>
+</div>
+</footer>
+
+<!-- ==================== MODAL INTERACTIVO DE RESERVAS ==================== -->
+<div id="booking-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm">
+<div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-gray-100 transform transition-all relative">
+    <div class="bg-gradient-to-r from-aqua-500 to-sea-dark p-6 text-white relative">
+        <button onclick="closeModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center text-sm transition-colors">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <h3 class="font-serif font-bold text-2xl">Reserva tu Cita en Essenza Beauty</h3>
+        <p class="text-xs text-aqua-100 mt-1">Completa los datos para agendar tu cita.</p>
+    </div>
+
+    <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="p-6 space-y-4">
+        <div>
+            <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Nombre Completo</label>
+            <input type="text" required placeholder="Ej. Ana García" class="w-full px-4 py-2.5 bg-gray-50 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-aqua-500">
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Teléfono</label>
+                <input type="tel" required placeholder="+34 600..." class="w-full px-4 py-2.5 bg-gray-50 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-aqua-500">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Servicio Principal</label>
+                <select id="modal-service-select" class="w-full px-4 py-2.5 bg-gray-50 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-aqua-500">
+                    <option value="Corte & Peinado">Corte & Peinado (25,00 €)</option>
+                    <option value="Tinte & Color">Tinte & Color (45,00 €)</option>
+                    <option value="Limpieza Facial">Limpieza Facial (35,00 €)</option>
+                    <option value="Manicura Semipermanente">Manicura Semipermanente (20,00 €)</option>
+                    <option value="Masaje Relajante">Masaje Relajante (40,00 €)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Fecha</label>
+                <input type="date" required class="w-full px-4 py-2.5 bg-gray-50 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-aqua-500">
+            </div>
+            <div>
+                <label class="block text-xs font-semibold text-gray-700 uppercase mb-1">Hora Preferida</label>
+                <select class="w-full px-4 py-2.5 bg-gray-50 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-aqua-500">
+                    <option>10:00</option>
+                    <option>12:00</option>
+                    <option>14:00</option>
+                    <option>16:00</option>
+                    <option>18:00</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="pt-3">
+            <button type="submit" class="w-full py-3 bg-gradient-to-r from-aqua-500 to-sea-dark text-white font-medium rounded-xl shadow-md hover:opacity-95 transition-all">
+                Confirmar Cita
+            </button>
+        </div>
+    </form>
+
+    <div id="booking-success" class="hidden p-8 text-center space-y-4">
+        <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mx-auto">
+            <i class="fa-solid fa-check"></i>
+        </div>
+        <h4 class="font-serif font-bold text-2xl text-gray-900">¡Reserva Solicitada!</h4>
+        <p class="text-xs text-gray-600 leading-relaxed">
+            Hemos recibido tu solicitud de cita para Essenza Beauty. Nos pondremos en contacto contigo por WhatsApp o llamada para confirmar.
+        </p>
+        <button onclick="closeModal()" class="px-6 py-2.5 bg-gray-900 text-white rounded-full text-xs font-medium">Cerrar</button>
+    </div>
+</div>
+</div>
+
+<!-- ==================== LÓGICA JAVASCRIPT ==================== -->
+<script>
+// --- 1. Control del Menú Móvil ---
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+
+if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+}
+
+function closeMobileMenu() {
+    if (mobileMenu) {
+        mobileMenu.classList.add('hidden');
+    }
+}
+
+// --- 2. Control de Pestañas de Servicios ---
+function switchTab(category) {
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.add('hidden');
+    });
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-aqua-600', 'text-white', 'shadow-md');
+        btn.classList.add('bg-gray-100', 'text-gray-600');
+    });
+
+    const selectedContent = document.getElementById(`content-${category}`);
+    if (selectedContent) selectedContent.classList.remove('hidden');
+
+    const activeBtn = document.getElementById(`tab-${category}`);
+    if (activeBtn) {
+        activeBtn.classList.remove('bg-gray-100', 'text-gray-600');
+        activeBtn.classList.add('bg-aqua-600', 'text-white', 'shadow-md');
+    }
+}
+
+// --- 3. Cotizador / Calculadora Interactiva en Euros (€) ---
+const checkboxes = document.querySelectorAll('.calc-checkbox');
+const selectedListEl = document.getElementById('calc-selected-list');
+const totalPriceEl = document.getElementById('calc-total-price');
+
+function updateCalculator() {
+    let total = 0;
+    let itemsHTML = '';
+
+    checkboxes.forEach(cb => {
+        if (cb.checked) {
+            const name = cb.getAttribute('data-name');
+            const price = parseFloat(cb.getAttribute('data-price'));
+            total += price;
+            itemsHTML += `
+                <div class="flex justify-between items-center bg-gray-50 p-2 rounded-lg text-xs">
+                    <span class="font-medium text-gray-700">${name}</span>
+                    <span class="font-bold text-aqua-600">${price.toFixed(2).replace('.', ',')} €</span>
+                </div>
+            `;
+        }
+    });
+
+    if (itemsHTML === '') {
+        selectedListEl.innerHTML = '<p class="text-gray-400 italic text-xs">No has seleccionado ningún servicio aún.</p>';
+    } else {
+        selectedListEl.innerHTML = itemsHTML;
+    }
+
+    totalPriceEl.textContent = `${total.toFixed(2).replace('.', ',')} €`;
+}
+
+checkboxes.forEach(cb => cb.addEventListener('change', updateCalculator));
+
+// --- 4. Filtro de Galería ---
+function filterGallery(category, evt) {
+    const items = document.querySelectorAll('.gallery-item');
+    const buttons = document.querySelectorAll('.gallery-filter-btn');
+
+    buttons.forEach(btn => {
+        btn.classList.remove('bg-aqua-600', 'text-white');
+        btn.classList.add('bg-gray-100', 'text-gray-600');
+    });
+
+    if (evt && evt.target) {
+        evt.target.classList.remove('bg-gray-100', 'text-gray-600');
+        evt.target.classList.add('bg-aqua-600', 'text-white');
+    }
+
+    items.forEach(item => {
+        if (category === 'all' || item.classList.contains(category)) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+// --- 5. Carrusel de Testimonios ---
+const testimonials = [
+    {
+        text: '"¡Una experiencia increíble en Essenza Beauty! El cambio de look superó todas mis expectativas. La atención es impecable y el ambiente te relaja al instante."',
+        author: 'Mariana López',
+        service: 'Servicio de Balayage',
+        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80'
+    },
+    {
+        text: '"La limpieza facial profunda me dejó la piel reluciente. Sin duda el mejor salón de Irún. Totalmente recomendado."',
+        author: 'Elena Rostova',
+        service: 'Tratamiento Facial',
+        avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80'
+    },
+    {
+        text: '"Amo hacerme las uñas en Essenza Beauty. Tienen una atención al detalle única y el esmaltado me dura semanas intacto."',
+        author: 'Carla Mendoza',
+        service: 'Manicura Semipermanente',
+        avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80'
+    }
+];
+
+let currentTestiIndex = 0;
+
+function updateTestimonial() {
+    const testiContainer = document.getElementById('testimonial-container');
+    if (!testiContainer) return;
+    testiContainer.style.opacity = '0';
+
+    setTimeout(() => {
+        const t = testimonials[currentTestiIndex];
+        document.getElementById('testi-text').textContent = t.text;
+        document.getElementById('testi-author').textContent = t.author;
+        document.getElementById('testi-service').textContent = t.service;
+        document.getElementById('testi-avatar').src = t.avatar;
+        testiContainer.style.opacity = '1';
+    }, 200);
+}
+
+function nextTestimonial() {
+    currentTestiIndex = (currentTestiIndex + 1) % testimonials.length;
+    updateTestimonial();
+}
+
+function prevTestimonial() {
+    currentTestiIndex = (currentTestiIndex - 1 + testimonials.length) % testimonials.length;
+    updateTestimonial();
+}
+
+// --- 6. Modal de Reserva ---
+const bookingModal = document.getElementById('booking-modal');
+const bookingForm = document.getElementById('booking-form');
+const bookingSuccess = document.getElementById('booking-success');
+
+function openModal() {
+    if (bookingModal) {
+        bookingModal.classList.remove('hidden');
+    }
+    if (bookingForm) {
+        bookingForm.classList.remove('hidden');
+    }
+    if (bookingSuccess) {
+        bookingSuccess.classList.add('hidden');
+    }
+}
+
+function closeModal() {
+    if (bookingModal) {
+        bookingModal.classList.add('hidden');
+    }
+}
+
+function openModalWithSelected() {
+    openModal();
+    const selected = Array.from(checkboxes).find(cb => cb.checked);
+    if (selected) {
+        const modalSelect = document.getElementById('modal-service-select');
+        if (modalSelect) {
+            for (let i = 0; i < modalSelect.options.length; i++) {
+                if (modalSelect.options[i].text.toLowerCase().includes(selected.getAttribute('data-name').toLowerCase())) {
+                    modalSelect.selectedIndex = i;
+                    break;
+                }
+            }
+        }
+    }
+}
+
+function handleBookingSubmit(event) {
+    event.preventDefault();
+    if (bookingForm) bookingForm.classList.add('hidden');
+    if (bookingSuccess) bookingSuccess.classList.remove('hidden');
+}
+
+function handleNewsletter(event) {
+    event.preventDefault();
+    alert('¡Gracias por suscribirte a nuestras promociones!');
+    event.target.reset();
+}
+</script>
+
+<!-- Librería para generar el código QR -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+// --- 7. Código QR ---
+// Dirección real de la web (cámbiala aquí si algún día usas un dominio propio)
+const SITE_URL = 'https://zippy-cranachan-ad0ef9.netlify.app';
+
+const qrBox = document.getElementById('qr-box');
+if (qrBox && typeof QRCode !== 'undefined') {
+    new QRCode(qrBox, {
+        text: SITE_URL,
+        width: 220,
+        height: 220,
+        colorDark: '#111827',
+        colorLight: '#ffffff',
+        correctLevel: QRCode.CorrectLevel.H
+    });
+}
+</script>
+</body>
+</html>
